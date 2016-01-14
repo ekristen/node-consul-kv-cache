@@ -4,6 +4,12 @@ This is designed to be used with `node-consul` and the watch command with `consu
 
 If multiple key changes are received with single update, the cache library will trigger 2 separate change events.
 
+## Install Instructions
+
+```
+npm install consul-kv-cache
+```
+
 ## Example
 
 ```javascript
