@@ -1,0 +1,17 @@
+{
+  "name": "consul-kv-cache",
+  "version": "1.0.0",
+  "description": "this library turns each key change received into an node emitted event, and keeps track so duplicates are not sent",
+  "main": "kv-cache.js",
+  "author": "Erik Kristensen <erik@erikkristensen.com>",
+  "license": "MIT",
+  "dependencies": {
+    "after": "^0.8.1",
+    "debug": "^2.2.0",
+    "memdb": "^1.3.1"
+  },
+  "devDependencies": {
+    "consul": "^0.23.0",
+    "tape": "^4.4.0"
+  }
+}
