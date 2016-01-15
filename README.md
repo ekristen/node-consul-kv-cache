@@ -1,6 +1,6 @@
 # node-consul-kv-cache
 
-[![David](https://img.shields.io/david/ekristen/node-consul-kv-cache.svg)]() [![David](https://img.shields.io/david/dev/ekristen/node-consul-kv-cache.svg)]() [![npm](https://img.shields.io/npm/v/consul-kv-cache.svg)]() [![npm](https://img.shields.io/npm/l/consul-kv-cache.svg)]() [![npm](https://img.shields.io/npm/dt/consul-kv-cache.svg)]()
+[![Build Status](https://travis-ci.org/ekristen/node-consul-kv-cache.svg?branch=master)](https://travis-ci.org/ekristen/node-consul-kv-cache) [![David](https://img.shields.io/david/ekristen/node-consul-kv-cache.svg)]() [![David](https://img.shields.io/david/dev/ekristen/node-consul-kv-cache.svg)]() [![npm](https://img.shields.io/npm/v/consul-kv-cache.svg)]() [![npm](https://img.shields.io/npm/l/consul-kv-cache.svg)]() [![npm](https://img.shields.io/npm/dt/consul-kv-cache.svg)]()
 
 This is designed to be used with `node-consul` and the watch command with `consul.kv.get` this library turns each key change received into an node emitted event, and keeps track so duplicates are not sent.
 
