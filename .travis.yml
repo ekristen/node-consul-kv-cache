@@ -12,5 +12,4 @@ before_script:
   
 script: 
   - ./consul agent -server -bootstrap -data-dir /tmp/consul &
-  - npm install
-  - npm run test && killall consul
+  - sleep 15 && npm run test && killall consul
