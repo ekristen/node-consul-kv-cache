@@ -1,5 +1,7 @@
+var _ = require('lodash')
 var util = require('util')
 var after = require('after')
+var xtend = require('xtend')
 var debug = require('debug')('consul-kv-cache')
 var MemDB = require('memdb')
 
@@ -11,6 +13,11 @@ function ConsulKVCache(opts) {
   }
 
   this.initial = true
+  
+  this.opts = xtend({
+    createTree: false,
+    returnKey: null
+  }, opts)
   
   return this
 }
@@ -61,13 +68,61 @@ ConsulKVCache.prototype.update = function ConsulKVCacheUpdate (keys) {
 
         if (err && err.notFound || (!err && existingKey.ModifyIndex !== key.ModifyIndex)) {
           debug('new key: %s', key.Key)
-          self.emit('change', existingKey)
+          self.emit('change', existingKey, self.createTree(keys))
         }
         
         return done()
       })
     })
   })
+}
+
+ConsulKVCache.prototype.createTree = function createTree(data) {
+  if (this.opts.createTree == false) {
+    return null
+  }
+
+  var lst = []
+  var compiledData = {}
+
+  data.forEach(function(entry) {
+    if (entry.Key.substring(entry.Key.length-1) == '/') {
+      return
+    }
+
+    var arr = entry.Key.split('/')
+    for(var i=0; i<arr.length; i++) {
+      if (arr[i] == '' || arr[i] == null) {
+        arr.pop()
+      }
+    }
+
+    arr.push(entry.Value)
+    lst.push(arr)
+
+    var tree = {}
+    lst.forEach(function(item) {
+        var value = item.pop()
+        item.reduce(function(node, chr, index, array) {
+          if (index == array.length - 1) {
+            return node[chr] = value
+          }
+
+          return node[chr] = {}
+        }, tree)
+    });
+
+  
+    compiledData = _.merge(compiledData, tree)
+  })
+
+  var args = [compileData]
+  if (this.opts.returnKey != null) {
+    var keyArgs = this.opts.returnKey.split('/')
+    args = args.concat(keyArgs)
+  }
+
+  return _.get.apply(args)
 }
 
 module.exports = ConsulKVCache
