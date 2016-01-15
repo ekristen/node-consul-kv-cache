@@ -11,4 +11,6 @@ before_script:
   - ./consul --version
   
 script: 
-  - ../consul agent -server -bootstrap 1 -data-dir /tmp/consul &
+  - ./consul agent -server -bootstrap 1 -data-dir /tmp/consul &
+  - npm install
+  - npm run test
