@@ -122,7 +122,7 @@ ConsulKVCache.prototype.createTree = function createTree(data) {
     args = args.concat(keyArgs)
   }
 
-  return _.get.apply(args)
+  return _.get.apply(null, args)
 }
 
 module.exports = ConsulKVCache
