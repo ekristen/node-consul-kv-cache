@@ -116,7 +116,7 @@ ConsulKVCache.prototype.createTree = function createTree(data) {
     compiledData = _.merge(compiledData, tree)
   })
 
-  var args = [compileData]
+  var args = [compiledData]
   if (this.opts.returnKey != null) {
     var keyArgs = this.opts.returnKey.split('/')
     args = args.concat(keyArgs)
