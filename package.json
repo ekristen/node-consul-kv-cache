@@ -13,7 +13,6 @@
     "xtend": "^4.0.1"
   },
   "devDependencies": {
-    "after": "^0.8.1",
     "consul": "^0.23.0",
     "tape": "^4.4.0"
   },
